@@ -35,4 +35,4 @@ Pakiety wymagane przez ubuntu: apt-get install php php-mbstring php-xml php-pgsq
 
 # Licencja
 
-Aplikacja udostępniona na licencji [MIT](https://pl.wikipedia.org/wiki/Licencja_MIT), autor Tomasz Prus.
+Aplikacja udostępniona na licencji [MIT](https://pl.wikipedia.org/wiki/Licencja_MIT).
