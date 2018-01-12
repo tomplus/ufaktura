@@ -1,13 +1,14 @@
 # uFaktura (micro-faktura)
 
-micro-Faktura to serwis do wystawiania faktur, który można uruchomić na serwerze hostingowym.
-Pozwala wystawiać najprostsze faktury (max. 3 pozycje) dla podatników zwolnionych z VAT.
-Idealne dla osób prowadzących działalność usługą dla niewielkiel liczby klientów,
-których wymagania odnośnie systemu fakturowania nie są wygórowane.
+micro-Faktura to serwis do wystawiania faktur, który można uruchomić na serwerze hostingowym
+lub własnym komputerze. Pozwala wystawiać najprostsze faktury (max. 3 pozycje) dla podatników
+zwolnionych z VAT. Idealne dla osób prowadzących działalność usługową dla niewielkiej
+liczby klientów, których wymagania odnośnie systemu fakturowania nie są wygórowane.
 
 Cechy charakterystyczne:
 
 * do samodzielnego uruchomienia serwerze hostingowym z PHP i bazą danych
+* możliwość uruchomienia na komputerze domowym
 * prosty schemat bazy danych do ew. eksportu do dodatkowych narzedzi (np. Excel)
 * faktura może zawierać maksymalnie 3 pozycje
 * tylko faktury zwolnione z VAT (dawny Rachnuek)
