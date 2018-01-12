@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $ivc_id
  * @property string $ivc_number
+ * @property integer $ivc_pfl_id
  * @property integer $ivc_cln_id
  * @property string $ivc_date_create
  * @property string $ivc_date_sale
@@ -24,6 +25,7 @@ use Yii;
  * @property string $ivc_ts_update
  *
  * @property Clients $ivcCln
+ * @property Profiles $ivcPfl
  */
 class Invoices extends \yii\db\ActiveRecord
 {
@@ -41,14 +43,16 @@ class Invoices extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ivc_number', 'ivc_cln_id', 'ivc_date_create', 'ivc_date_sale', 'ivc_name', 'ivc_count', 'ivc_unit', 'ivc_price', 'ivc_value', 'ivc_date_payment', 'ivc_payment_method', 'ivc_ts_insert', 'ivc_ts_update'], 'required'],
-            [['ivc_cln_id', 'ivc_count'], 'integer'],
+            [['ivc_number', 'ivc_cln_id', 'ivc_date_create', 'ivc_date_sale', 'ivc_name', 'ivc_count', 'ivc_unit', 'ivc_price',
+              'ivc_value', 'ivc_date_payment', 'ivc_payment_method', 'ivc_ts_insert', 'ivc_ts_update', 'ivc_pfl_id'], 'required'],
+            [['ivc_cln_id', 'ivc_pfl_id', 'ivc_count'], 'integer'],
             [['ivc_date_create', 'ivc_date_sale', 'ivc_date_payment', 'ivc_ts_insert', 'ivc_ts_update'], 'safe'],
             [['ivc_price', 'ivc_value'], 'number'],
             [['ivc_number', 'ivc_name', 'ivc_unit', 'ivc_payment_method'], 'string', 'max' => 128],
             [['ivc_receipt_number'], 'string', 'max' => 256],
             [['ivc_number'], 'unique'],
             [['ivc_cln_id'], 'exist', 'skipOnError' => true, 'targetClass' => Clients::className(), 'targetAttribute' => ['ivc_cln_id' => 'cln_id']],
+            [['ivc_pfl_id'], 'exist', 'skipOnError' => true, 'targetClass' => Clients::className(), 'targetAttribute' => ['ivc_pfl_id' => 'cln_id']],
         ];
     }
 
@@ -60,6 +64,7 @@ class Invoices extends \yii\db\ActiveRecord
         return [
             'ivc_id' => 'ID',
             'ivc_number' => 'Numer rachunku',
+            'ivc_pfl_id' => 'Sprzedawca (profil)',
             'ivc_cln_id' => 'Klient',
             'ivc_date_create' => 'Data wystawienia',
             'ivc_date_sale' => 'Data sprzedaży',
@@ -84,9 +89,23 @@ class Invoices extends \yii\db\ActiveRecord
         return $this->hasOne(Clients::className(), ['cln_id' => 'ivc_cln_id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIvcPfl()
+    {
+        return $this->hasOne(Profiles::className(), ['pfl_id' => 'ivc_pfl_id']);
+    }
+
+
     public function getClientList()
     {
-        return clients::getNamesAsArray();
+        return Clients::getNamesAsArray();
+    }
+
+    public function getProfileList()
+    {
+        return Profiles::getNamesAsArray();
     }
 
     public function initValues()

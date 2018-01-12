@@ -17,6 +17,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ivc_number')->textInput(['maxlength' => true, 'readonly' => True]) ?>
 
+    <?= $form->field($model, 'ivc_pfl_id')->dropDownList($model->profileList) ?>
+
     <?= $form->field($model, 'ivc_cln_id')->dropDownList($model->clientList) ?>
 
     <?= $form->field($model, 'ivc_date_create')->widget(\yii\jui\DatePicker::classname(), ['language'=>'pl', 'dateFormat' => 'yyyy-MM-dd']) ?>

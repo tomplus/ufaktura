@@ -18,7 +18,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title>&micro; - Faktura - <?= Html::encode($this->title) ?></title>
+    <title>&micro;Faktura - <?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -27,7 +27,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'micro-Faktura',
+        'brandLabel' => '&micro;Faktura',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -38,7 +38,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Klienci', 'url' => ['/clients/index']],
             ['label' => 'Faktury', 'url' => ['/invoices/index']],
-            ['label' => 'Ustawienia', 'url' => ['/settings/index']],
+            ['label' => 'Profile', 'url' => ['/profiles/index']],
         ],
     ]);
     NavBar::end();
@@ -54,7 +54,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; &micro; - Faktura</p>
+        <p class="pull-left">&copy; &micro;Faktura</p>
     </div>
 </footer>
 

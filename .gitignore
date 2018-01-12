@@ -1,5 +1,8 @@
-assets/*
-!assets/.gitignore
+db/ufaktura.db
+composer.phar
+composer.lock
+vendor/
+runtime/
 protected/runtime/*
 !protected/runtime/.gitignore
 protected/data/*.db
