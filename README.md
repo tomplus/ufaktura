@@ -1,4 +1,4 @@
-# micro-Faktura
+# uFaktura (micro-faktura)
 
 micro-Faktura to serwis do wystawiania faktur, który można uruchomić na serwerze hostingowym.
 Pozwala wystawiać najprostsze faktury (max. 3 pozycje) dla podatników zwolnionych z VAT.
@@ -28,10 +28,21 @@ TODO
 
 Pakiety wymagane przez ubuntu: apt-get install php php-mbstring php-xml php-pgsql php-sqlite3
 
-1. Konieczna instalacja PHP Composer - https://getcomposer.org/download/
-2. Instalacja zależności ./composer.phar install
-3. Konfiguacja bazy danych
-4. Uruchomienie ./yii serve
+1. Konieczna instalacja PHP Composer - wiecej na: https://getcomposer.org/download/
+2. Instalacja zależności
+```
+./composer.phar install
+```
+3. Konfiguacja bazy danych sqlite
+```
+cd db
+make
+```
+4. Uruchomienie serwera w PHP
+```
+./yii serve
+```
+5. Serwis jest dostępny pod adresem http://localhost:8080
 
 # Licencja
 
