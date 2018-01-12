@@ -1,3 +1,4 @@
+*.swp
 db/ufaktura.db
 composer.phar
 composer.lock

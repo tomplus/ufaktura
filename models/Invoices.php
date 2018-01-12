@@ -52,7 +52,7 @@ class Invoices extends \yii\db\ActiveRecord
             [['ivc_receipt_number'], 'string', 'max' => 256],
             [['ivc_number'], 'unique'],
             [['ivc_cln_id'], 'exist', 'skipOnError' => true, 'targetClass' => Clients::className(), 'targetAttribute' => ['ivc_cln_id' => 'cln_id']],
-            [['ivc_pfl_id'], 'exist', 'skipOnError' => true, 'targetClass' => Clients::className(), 'targetAttribute' => ['ivc_pfl_id' => 'cln_id']],
+            [['ivc_pfl_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::className(), 'targetAttribute' => ['ivc_pfl_id' => 'pfl_id']],
         ];
     }
 
