@@ -1,3 +1,14 @@
+CREATE TABLE IF NOT EXISTS profiles (
+  pfl_id INTEGER PRIMARY KEY,
+  pfl_name_1 VARCHAR(128) NOT NULL,
+  pfl_name_2 VARCHAR(128),
+  pfl_name_3 VARCHAR(128),
+  pfl_name_4 VARCHAR(128),
+  pfl_name_5 VARCHAR(128)
+);
+
+CREATE INDEX profiles_name_idx ON clients(pfl_name_1);
+
 CREATE TABLE IF NOT EXISTS clients (
   cln_id INTEGER PRIMARY KEY,
   cln_name_1 VARCHAR(128) NOT NULL,
@@ -22,7 +33,6 @@ CREATE TABLE IF NOT EXISTS invoices (
   ivc_value DECIMAL(10,2) NOT NULL,
   ivc_date_payment DATE NOT NULL,
   ivc_payment_method VARCHAR(256) NOT NULL,
-  ivc_receipt_number VARCHAR(256),
   ivc_ts_insert TIMESTAMP NOT NULL,
   ivc_ts_update TIMESTAMP NOT NULL
 );
@@ -30,15 +40,3 @@ CREATE TABLE IF NOT EXISTS invoices (
 CREATE INDEX invoices_pfl_idx ON invoices(ivc_pfl_id);
 CREATE INDEX invoices_cln_idx ON invoices(ivc_cln_id);
 CREATE INDEX invoices_date_idx ON invoices(ivc_date_create);
-
-CREATE TABLE IF NOT EXISTS profiles (
-  pfl_id INTEGER PRIMARY KEY,
-  pfl_name_1 VARCHAR(128) NOT NULL,
-  pfl_name_2 VARCHAR(128),
-  pfl_name_3 VARCHAR(128),
-  pfl_name_4 VARCHAR(128),
-  pfl_name_5 VARCHAR(128)
-);
-
-
-

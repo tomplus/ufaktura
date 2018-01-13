@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'ivc_number',
             'ivc_pfl_id',
             'ivcCln.cln_name_1',
-            'ivc_receipt_number',
             'ivc_date_create',
             'ivc_date_sale',
             'ivc_name',

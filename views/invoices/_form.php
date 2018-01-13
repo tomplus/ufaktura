@@ -23,8 +23,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ivc_date_create')->widget(\yii\jui\DatePicker::classname(), ['language'=>'pl', 'dateFormat' => 'yyyy-MM-dd']) ?>
 
-    <?= $form->field($model, 'ivc_receipt_number')->textInput(['maxlength' => true]) ?>
-
     </div>
 
     <br/>

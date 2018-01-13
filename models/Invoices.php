@@ -20,7 +20,6 @@ use Yii;
  * @property string $ivc_value
  * @property string $ivc_date_payment
  * @property string $ivc_payment_method
- * @property string $ivc_receipt_number
  * @property string $ivc_ts_insert
  * @property string $ivc_ts_update
  *
@@ -49,7 +48,6 @@ class Invoices extends \yii\db\ActiveRecord
             [['ivc_date_create', 'ivc_date_sale', 'ivc_date_payment', 'ivc_ts_insert', 'ivc_ts_update'], 'safe'],
             [['ivc_price', 'ivc_value'], 'number'],
             [['ivc_number', 'ivc_name', 'ivc_unit', 'ivc_payment_method'], 'string', 'max' => 128],
-            [['ivc_receipt_number'], 'string', 'max' => 256],
             [['ivc_number'], 'unique'],
             [['ivc_cln_id'], 'exist', 'skipOnError' => true, 'targetClass' => Clients::className(), 'targetAttribute' => ['ivc_cln_id' => 'cln_id']],
             [['ivc_pfl_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::className(), 'targetAttribute' => ['ivc_pfl_id' => 'pfl_id']],
@@ -75,7 +73,6 @@ class Invoices extends \yii\db\ActiveRecord
             'ivc_value' => 'Wartość',
             'ivc_date_payment' => 'Termin płatności',
             'ivc_payment_method' => 'Sposób płatności',
-            'ivc_receipt_number' => 'Na podstawie paragonów',
             'ivc_ts_insert' => 'Data dodania',
             'ivc_ts_update' => 'Data zmiany',
         ];
