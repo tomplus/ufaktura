@@ -58,12 +58,18 @@ $pdf->Cell(20,6,"Ilość", 1, 0, 'R');
 $pdf->Cell(10,6,"J.m.", 1, 0, 'R');
 $pdf->Cell(20,6,"Cena", 1, 0, 'R');
 $pdf->Cell(20,6,"Wartość", 1, 1, 'R');
-$pdf->Cell(10,6,"1", 1, 0, 'R');
-$pdf->Cell(110,6,$model->ivc_name, 1, 0);
-$pdf->Cell(20,6,$model->ivc_count, 1, 0, 'R');
-$pdf->Cell(10,6,$model->ivc_unit, 1, 0, 'R');
-$pdf->Cell(20,6,$model->ivc_price, 1, 0, 'R');
-$pdf->Cell(20,6,$model->ivc_value, 1, 1, 'R');
+
+foreach (array('', '_2', '_3') as $suffix) {
+
+    $pdf->Cell(10,6,"1", 1, 0, 'R');
+    $pdf->Cell(110,6,$model->ivc_name, 1, 0);
+    $pdf->Cell(20,6,$model->ivc_count, 1, 0, 'R');
+    $pdf->Cell(10,6,$model->ivc_unit, 1, 0, 'R');
+    $pdf->Cell(20,6,$model->ivc_price, 1, 0, 'R');
+    $pdf->Cell(20,6,$model->ivc_value, 1, 1, 'R');
+
+}
+
 $pdf->Cell(170,6,"Do zapłaty:", 0, 0, 'R');
 $pdf->Cell(20,6,$model->ivc_value, 1, 1, 'R');
 

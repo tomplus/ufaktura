@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS profiles (
   pfl_name_5 VARCHAR(128)
 );
 
-CREATE INDEX profiles_name_idx ON clients(pfl_name_1);
+CREATE INDEX profiles_name_idx ON profiles(pfl_name_1);
 
 CREATE TABLE IF NOT EXISTS clients (
   cln_id INTEGER PRIMARY KEY,
@@ -30,6 +30,14 @@ CREATE TABLE IF NOT EXISTS invoices (
   ivc_count INT NOT NULL,
   ivc_unit VARCHAR(128) NOT NULL,
   ivc_price DECIMAL(10,2) NOT NULL,
+  ivc_name_2 VARCHAR(128),
+  ivc_count_2 INT,
+  ivc_unit_2 VARCHAR(128),
+  ivc_price_2 DECIMAL(10,2),
+  ivc_name_3 VARCHAR(128),
+  ivc_count_3 INT,
+  ivc_unit_3 VARCHAR(128),
+  ivc_price_3 DECIMAL(10,2),
   ivc_value DECIMAL(10,2) NOT NULL,
   ivc_date_payment DATE NOT NULL,
   ivc_payment_method VARCHAR(256) NOT NULL,

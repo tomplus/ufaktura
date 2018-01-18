@@ -30,13 +30,17 @@ use yii\widgets\ActiveForm;
     <div style="border: thin black solid; padding: 10px 10px 10px 10px;">
     <p><strong>Usługa</strong></p>
 
-    <?= $form->field($model, 'ivc_name')->textInput(['maxlength' => true]) ?>
+    <?php foreach (array('', '_2', '_3') as $suffix) { ?>
+        <?= $form->field($model, 'ivc_name' . $suffix,
+                         [ 'options' => ['style' => 'display: inline-block; width: 60%;']])->textInput(['maxlength' => true])->label( $suffix === '' ? 'Nazwa usługi' : '') ?>
+        <?= $form->field($model, 'ivc_count' . $suffix,
+                            [ 'options' => ['style' => 'display: inline-block; width: 10%;']])->textInput(['maxlength' => true])->label( $suffix === '' ? 'Ilość' : '') ?>
+        <?= $form->field($model, 'ivc_unit' . $suffix,
+                            [ 'options' => ['style' => 'display: inline-block; width: 10%;']])->textInput(['maxlength' => true])->label( $suffix === '' ? 'Jednostka' : '')  ?>
+        <?= $form->field($model, 'ivc_price' . $suffix,
+                            [ 'options' => ['style' => 'display: inline-block; width: 10%;']])->textInput()->label( $suffix === '' ? 'Cena jedn.' : '')  ?>
 
-    <?= $form->field($model, 'ivc_count')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ivc_unit')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ivc_price')->textInput() ?>
+    <?php } ?>
 
     </div>
 
