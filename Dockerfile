@@ -13,8 +13,7 @@ RUN chown -R nobody:nogroup /ufaktura
 
 USER nobody
 
-RUN make -C db/ \
- && /composer.phar install
+RUN /composer.phar install
 
 EXPOSE 8080
 

@@ -34,7 +34,7 @@ internetową.
 * Pobierz archiwum wydanej wersji (zakładka (Releases)[https://github.com/tomplus/ufaktura/releases])
 * Rozpakuj do podkatalogu na serwerze hostingowym
 * Zabezpiecz katalog (htaccess)
-* Uruchamiaj skrypty z podkatalogu web/
+* Wskaż domene (lub sub-domenę) na podkatalog `web/`
 
 ### Konfiguracja
 
@@ -66,7 +66,9 @@ return [
 ];
 ```
 
-#### SQLite (zalecana tylko przy uruchamianiu na własnym komputerze, patrz niżej).
+#### SQLite
+
+Baza zalecana przy uruchamianiu serwisu na własnym komputerze, patrz niżej.
 
 ```php
 <?php
@@ -75,6 +77,8 @@ return [
     'dsn' => 'sqlite:../db/ufaktura.db'
 ];
 ```
+
+### Uruchomienie
 
 Po wejściu na adres strony i potwierdzeniu hasła dostępu, program jest gotowy do pracy.
 Zanim wystawisz pierwszą fakturę, dodaj profil (swoje dane) oraz klientów.
@@ -99,15 +103,17 @@ docker pull tpimages/ufaktura:latest
 
 Zamiast `latest` możesz podać dowolną inną wydaną wersje.
 
-2. Przygotowanie bazy danych
+2. Utwórz katalog w którym zapisywane będą dane (baza sqlite) i skopiuj tam pustą bazę z kontenera.
 
 ```
+mkdir /home/tomplus/ufaktura
+docker run --volume=/home/tomplus/ufaktura:/tmp -it --rm --name ufaktura tpimages/ufaktura:latest cp /ufaktura/db/ufaktura.db /tmp/
 ```
-gdzie `/moja/ściezka/z/baza/danych`
 
-3. Uruchomienie
+3. Uruchom obraz wskazując katalog z baza danych
 
 ```
+docker run -p 8080:8080 --volume=/home/tomplus/ufaktura:/ufaktura/db -it --rm --name tpimages/ufaktura ufaktura:latest
 ```
 
 Serwis jest dostepny z przeglądarki pod adresem http://localhost:8080
