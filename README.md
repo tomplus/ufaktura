@@ -94,10 +94,13 @@ w firmie.
 1. Pobranie obazu kontenera
 
 ```
-docker pull
+docker pull tpimages/ufaktura:latest
 ```
 
+Zamiast `latest` możesz podać dowolną inną wydaną wersje.
+
 2. Przygotowanie bazy danych
+
 ```
 ```
 gdzie `/moja/ściezka/z/baza/danych`
@@ -118,28 +121,37 @@ To sposób dla programistów, którzy chcą zmodyfikować serwis.
 ### Wymagania
 
 * PHP 5.1 lub wyższy
-* Pakiety dodatkowe (przykład dla Ubuntu): `apt-get install php-mbstring php-xml php-pgsql php-sqlite3`
+* Pakiety dodatkowe (przykład dla Ubuntu):
+  ```apt-get install php-mbstring php-xml php-pgsql php-sqlite3```
 * PHP Composer (https://getcomposer.org/download/)
 
 ### Instalacja
 
-1. Instalacja zależności
+1. Aplikacja znajduje się w katalogu `src/`
+
+```
+cd src/
+```
+
+2. Instalacja zależności z `composer.json`.
 
 ```
 ./composer.phar install
 ```
 
-2. Konfiguacja bazy danych sqlite
+3. Utworzenie pustej bazy danych sqlite3
+
 ```
 cd db
 make
 ```
 
-3. Uruchomienie serwera w PHP
+4. Uruchomienie serwera w PHP
 ```
 ./yii serve
 ```
-4. Serwis jest dostępny pod adresem http://localhost:8080
+
+4. Serwis jest dostępny pod adresem http://localhost:8080 Wprowadzane zmiany od razu wpływaja na działanie aplikacji.
 
 # Licencja
 
