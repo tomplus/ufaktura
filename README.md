@@ -31,7 +31,7 @@ internetową.
 
 ### Instalacja
 
-* Pobierz archiwum wydanej wersji (zakładka Releases w github)
+* Pobierz archiwum wydanej wersji (zakładka (Releases)[https://github.com/tomplus/ufaktura/releases])
 * Rozpakuj do podkatalogu na serwerze hostingowym
 * Zabezpiecz katalog (htaccess)
 * Uruchamiaj skrypty z podkatalogu web/
@@ -71,7 +71,6 @@ return [
 
 ```php
 <?php
-
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'sqlite:../db/ufaktura.db'
