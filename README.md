@@ -41,7 +41,7 @@ internetową.
 Konfiguracja dostępu do bazy znajduje się w pliku: `src/config/db.php`. Otwórz 
 go w edytorze i zmień wartośc `dsn` w zależności od typu bazy danych
 
-* MySQL
+#### MySQL
 
 ```php
 <?php
@@ -54,20 +54,19 @@ return [
 ];
 ```
 
-* PostgreSQL
+#### PostgreSQL
 
 ```php
 <?php
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic;user=root;password=pass',
+    'dsn' => 'pgsql:host=localhost;dbname=yii2basic'
     'username' => 'ufaktura',
     'password' => 'pass',
-    'charset' => 'utf8',
 ];
 ```
 
-* SQLite (zalecana tylko przy uruchamianiu na własnym komputerze, patrz niżej).
+#### SQLite (zalecana tylko przy uruchamianiu na własnym komputerze, patrz niżej).
 
 ```php
 <?php
@@ -119,7 +118,7 @@ To sposób dla programistów, którzy chcą zmodyfikować serwis.
 ### Wymagania
 
 * PHP 5.1 lub wyższy
-* Pakiety dodatkowe (nazwy z systemu Ubuntu): php-mbstring php-xml php-pgsql php-sqlite3
+* Pakiety dodatkowe (przykład dla Ubuntu): `apt-get install php-mbstring php-xml php-pgsql php-sqlite3`
 * PHP Composer (https://getcomposer.org/download/)
 
 ### Instalacja
