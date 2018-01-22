@@ -15,7 +15,7 @@ Cechy charakterystyczne:
 * tylko faktury zwolnione z VAT
 * generuje fakturę w formacie PDF do wydruku lub wysyłki przez mailem
 * brak autoryzacji / autentykacji - zadbaj o to konfigurujac serwer HTTP
-* projekt otwarty oparty o PHP i framework Yii - możesz dostosować do własnych potrzeb
+* projekt otwarty oparty o PHP i framework Yii - możesz go łatwo dostosować do własnych potrzeb
 
 # Instalacja
 
@@ -27,7 +27,7 @@ internetową.
 ### Wymagania
 
 * PHP 5.1 lub wyższej
-* Baza danych - do wyboru: mysql, postgresql
+* Baza danych - do wyboru: mysql, postgresql, sqlite.
 
 ### Instalacja
 
@@ -35,6 +35,7 @@ internetową.
 * Rozpakuj do podkatalogu na serwerze hostingowym
 * Zabezpiecz katalog (htaccess)
 * Wskaż domene (lub sub-domenę) na podkatalog `web/`
+* Utwórz bazę danych i wgraj schemat korzystając z odpowiednich plików z repozytorium (katalog db).
 
 ### Konfiguracja
 
@@ -42,6 +43,8 @@ Konfiguracja dostępu do bazy znajduje się w pliku: `src/config/db.php`. Otwór
 go w edytorze i zmień wartośc `dsn` w zależności od typu bazy danych
 
 #### MySQL
+
+Schemat bazy danych znajduje się w pliku `db/db.mysql.sql`.
 
 ```php
 <?php
@@ -56,6 +59,8 @@ return [
 
 #### PostgreSQL
 
+Schemat bazy danych znajduje się w pliku `db/db.postgresql.sql`.
+
 ```php
 <?php
 return [
@@ -69,6 +74,8 @@ return [
 #### SQLite
 
 Baza zalecana przy uruchamianiu serwisu na własnym komputerze, patrz niżej.
+Gotowa pusta baza danych znajduje się w katalogu `db` wydania.
+
 
 ```php
 <?php
