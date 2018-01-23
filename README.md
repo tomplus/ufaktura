@@ -135,7 +135,7 @@ To sposób dla programistów, którzy chcą zmodyfikować serwis.
 
 * PHP 5.1 lub wyższy
 * Pakiety dodatkowe (przykład dla Ubuntu):
-  ```apt-get install php-mbstring php-xml php-pgsql php-sqlite3```
+  ```apt-get install php-mbstring php-bcmath php-xml php-pgsql php-mysql php-sqlite3```
 * PHP Composer (https://getcomposer.org/download/)
 
 ### Instalacja
