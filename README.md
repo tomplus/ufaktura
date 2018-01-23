@@ -31,7 +31,7 @@ internetową.
 
 ### Instalacja
 
-* Pobierz archiwum wydanej wersji (zakładka (Releases)[https://github.com/tomplus/ufaktura/releases])
+* Pobierz archiwum wydanej wersji (zakładka [Releases](https://github.com/tomplus/ufaktura/releases))
 * Rozpakuj do podkatalogu na serwerze hostingowym
 * Zabezpiecz katalog (htaccess)
 * Wskaż domene (lub sub-domenę) na podkatalog `web/`
@@ -44,7 +44,7 @@ go w edytorze i zmień wartośc `dsn` w zależności od typu bazy danych
 
 #### MySQL
 
-Schemat bazy danych znajduje się w pliku `db/db.mysql.sql`.
+Schemat bazy danych znajduje się w pliku [db/db.mysql.sql](db/db.mysql.sql).
 
 ```php
 <?php
@@ -59,7 +59,7 @@ return [
 
 #### PostgreSQL
 
-Schemat bazy danych znajduje się w pliku `db/db.postgresql.sql`.
+Schemat bazy danych znajduje się w pliku [db/db.postgresql.sql](db/db.postgresql.sql).
 
 ```php
 <?php
