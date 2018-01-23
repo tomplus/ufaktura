@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+
 require('../modules/fpdf/tfpdf.php');
 require('../modules/slownie.php');
 
@@ -59,19 +60,26 @@ $pdf->Cell(10,6,"J.m.", 1, 0, 'R');
 $pdf->Cell(20,6,"Cena", 1, 0, 'R');
 $pdf->Cell(20,6,"Wartość", 1, 1, 'R');
 
+$i = 0;
 foreach (array('', '_2', '_3') as $suffix) {
 
-    $pdf->Cell(10,6,"1", 1, 0, 'R');
-    $pdf->Cell(110,6,$model->ivc_name, 1, 0);
-    $pdf->Cell(20,6,$model->ivc_count, 1, 0, 'R');
-    $pdf->Cell(10,6,$model->ivc_unit, 1, 0, 'R');
-    $pdf->Cell(20,6,$model->ivc_price, 1, 0, 'R');
-    $pdf->Cell(20,6,$model->ivc_value, 1, 1, 'R');
+    if ($model->{'ivc_count' . $suffix} > 0) {
+
+        $i += 1;
+        $pdf->Cell(10,6,$i, 1, 0, 'R');
+        $pdf->Cell(110,6,$model->{'ivc_name' . $suffix}, 1, 0);
+        $pdf->Cell(20,6,$model->{'ivc_count' . $suffix}, 1, 0, 'R');
+        $pdf->Cell(10,6,$model->{'ivc_unit' . $suffix}, 1, 0, 'R');
+        $pdf->Cell(20,6,number_format($model->{'ivc_price' . $suffix},2), 1, 0, 'R');
+        $value = $model->{'ivc_count' . $suffix} * $model->{'ivc_price' . $suffix};
+        $pdf->Cell(20,6, number_format($value,2) , 1, 1, 'R');
+
+    }
 
 }
 
 $pdf->Cell(170,6,"Do zapłaty:", 0, 0, 'R');
-$pdf->Cell(20,6,$model->ivc_value, 1, 1, 'R');
+$pdf->Cell(20,6,number_format($model->ivc_value,2), 1, 1, 'R');
 
 $pdf->Ln(10);
 
@@ -92,6 +100,7 @@ $pdf->SetFontSize(5);
 $pdf->Cell(95,6,"Podpis osoby upoważnionej do odbioru rachunku", 0, 0, 'C');    $pdf->Cell(95,6,"Podpis osoby upoważnionej do wystawienia rachunku", 0, 1, 'C');
 
 $outname = "rachunek-" . str_replace('/','_',$model->ivc_number) . "-ufaktura.pdf";
+
 $pdf->Output($outname, 'D');
 
 ?>
