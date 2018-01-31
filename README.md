@@ -26,7 +26,7 @@ internetową.
 
 ### Wymagania
 
-* PHP 5.1 lub wyższej
+* PHP 5.4 lub nowszy
 * Baza danych - do wyboru: mysql, postgresql, sqlite.
 
 ### Instalacja
