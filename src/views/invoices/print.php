@@ -15,11 +15,12 @@ $pdf->AddFont('DejaVu','','DejaVuSansCondensed.ttf',true);
 $pdf->SetFont('DejaVu','',14);
 
 $pdf->SetFontSize(10);
-$pdf->Cell(4,6, $model->ivcPfl->pfl_name_1 , 0, 1);
-$pdf->Cell(4,6, $model->ivcPfl->pfl_name_2 , 0, 1);
-$pdf->Cell(4,6, $model->ivcPfl->pfl_name_3 , 0, 1);
-$pdf->Cell(4,6, $model->ivcPfl->pfl_name_4 , 0, 1);
-$pdf->Cell(4,6, $model->ivcPfl->pfl_name_5 , 0, 1);
+$pdf->Cell(4,6, $model->ivcPfl->pfl_name_1, 0, 1);
+$pdf->Cell(4,6, $model->ivcPfl->pfl_name_2, 0, 1);
+$pdf->Cell(4,6, $model->ivcPfl->pfl_name_3, 0, 1);
+$pdf->Cell(4,6, $model->ivcPfl->pfl_name_4, 0, 1);
+$pdf->Cell(4,6, $model->ivcPfl->pfl_name_5, 0, 1);
+$pdf->Cell(4,6, $model->ivcPfl->pfl_name_6, 0, 1);
 
 $pdf->Ln(10);
 $pdf->SetFontSize(20);
