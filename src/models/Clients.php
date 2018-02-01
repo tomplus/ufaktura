@@ -13,6 +13,8 @@ use yii\helpers\ArrayHelper;
  * @property string $cln_name_2
  * @property string $cln_name_3
  * @property string $cln_name_4
+ * @property string $cln_name_5
+ * @property string $cln_name_6
  *
  * @property Invoices[] $invoices
  */
@@ -33,7 +35,7 @@ class Clients extends \yii\db\ActiveRecord
     {
         return [
             [['cln_name_1', 'cln_name_2', 'cln_name_3'], 'required'],
-            [['cln_name_1', 'cln_name_2', 'cln_name_3', 'cln_name_4'], 'string', 'max' => 128],
+            [['cln_name_1', 'cln_name_2', 'cln_name_3', 'cln_name_4', 'cln_name_5', 'cln_name_6'], 'string', 'max' => 128],
         ];
     }
 
@@ -48,6 +50,8 @@ class Clients extends \yii\db\ActiveRecord
             'cln_name_2' => 'Ulica',
             'cln_name_3' => 'Miasto',
             'cln_name_4' => 'NIP',
+            'cln_name_5' => 'Dodatkowa linia 1',
+            'cln_name_6' => 'Dodatkowa linia 2',
         ];
     }
 

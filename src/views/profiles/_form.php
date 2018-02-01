@@ -22,6 +22,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'pfl_name_5')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'pfl_name_6')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

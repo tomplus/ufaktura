@@ -49,8 +49,8 @@ $pdf->Cell(95, 5, $model->ivcPfl->pfl_name_1, 0, 0);   $pdf->Cell(105,5,$model->
 $pdf->Cell(95, 5, $model->ivcPfl->pfl_name_2, 0, 0);   $pdf->Cell(105,5,$model->ivcCln->cln_name_2, 0, 1);
 $pdf->Cell(95, 5, $model->ivcPfl->pfl_name_3, 0, 0);   $pdf->Cell(105,5,$model->ivcCln->cln_name_3, 0, 1);
 $pdf->Cell(95, 5, $model->ivcPfl->pfl_name_4, 0, 0);   $pdf->Cell(105,5,$cln_nip, 0, 1);
-$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_5, 0, 0);   $pdf->Cell(105,5,'', 0, 1);
-
+$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_5, 0, 0);   $pdf->Cell(105,5,$model->ivcCln->cln_name_5, 0, 1);
+$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_6, 0, 0);   $pdf->Cell(105,5,$model->ivcCln->cln_name_6, 0, 1);
 
 $pdf->Ln(15);
 $pdf->Cell(10,6,"Lp.", 1, 0);

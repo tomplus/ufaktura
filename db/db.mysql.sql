@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS profiles (
   pfl_name_3 VARCHAR(128),
   pfl_name_4 VARCHAR(128),
   pfl_name_5 VARCHAR(128),
+  pfl_name_6 VARCHAR(128),
   PRIMARY KEY (pfl_id)
 ) ENGINE = InnoDB;
 
@@ -16,6 +17,8 @@ CREATE TABLE IF NOT EXISTS clients (
   cln_name_2 VARCHAR(128) NOT NULL,
   cln_name_3 VARCHAR(128) NOT NULL,
   cln_name_4 VARCHAR(128) NOT NULL,
+  cln_name_5 VARCHAR(128) NOT NULL,
+  cln_name_6 VARCHAR(128) NOT NULL,
   PRIMARY KEY (cln_id)
 ) ENGINE = InnoDB;
 
