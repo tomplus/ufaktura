@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS profiles (
   pfl_name_2 VARCHAR(128),
   pfl_name_3 VARCHAR(128),
   pfl_name_4 VARCHAR(128),
-  pfl_name_5 VARCHAR(128)
+  pfl_name_5 VARCHAR(128),
+  pfl_name_6 VARCHAR(128)
 );
 
 CREATE INDEX profiles_name_idx ON profiles(pfl_name_1);
@@ -14,7 +15,9 @@ CREATE TABLE IF NOT EXISTS clients (
   cln_name_1 VARCHAR(128) NOT NULL,
   cln_name_2 VARCHAR(128) NOT NULL,
   cln_name_3 VARCHAR(128) NOT NULL,
-  cln_name_4 VARCHAR(128) NOT NULL
+  cln_name_4 VARCHAR(128) NOT NULL,
+  cln_name_5 VARCHAR(128) NOT NULL,
+  cln_name_6 VARCHAR(128) NOT NULL
 );
 
 CREATE INDEX clients_name_idx ON clients(cln_name_1);

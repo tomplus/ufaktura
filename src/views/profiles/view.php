@@ -34,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'pfl_name_3',
             'pfl_name_4',
             'pfl_name_5',
-        ],
+            'pfl_name_6',
+    ],
     ]) ?>
 
 </div>
