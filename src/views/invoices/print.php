@@ -72,7 +72,7 @@ foreach (array('', '_2', '_3') as $suffix) {
         $pdf->Cell(20,6,$model->{'ivc_count' . $suffix}, 1, 0, 'R');
         $pdf->Cell(10,6,$model->{'ivc_unit' . $suffix}, 1, 0, 'R');
         $pdf->Cell(20,6,number_format($model->{'ivc_price' . $suffix},2), 1, 0, 'R');
-        $value = $model->{'ivc_count' . $suffix} * $model->{'ivc_price' . $suffix};
+        $value = round($model->{'ivc_count' . $suffix} * $model->{'ivc_price' . $suffix}, 2);
         $pdf->Cell(20,6, number_format($value,2) , 1, 1, 'R');
 
     }
