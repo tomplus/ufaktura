@@ -14,15 +14,15 @@ use Yii;
  * @property string $ivc_date_create
  * @property string $ivc_date_sale
  * @property string $ivc_name
- * @property integer $ivc_count
+ * @property string $ivc_count
  * @property string $ivc_unit
  * @property string $ivc_price
  * @property string $ivc_name_2
- * @property integer $ivc_count_2
+ * @property string $ivc_count_2
  * @property string $ivc_unit_2
  * @property string $ivc_price_2
  * @property string $ivc_name_3
- * @property integer $ivc_count_3
+ * @property string $ivc_count_3
  * @property string $ivc_unit_3
  * @property string $ivc_price_3
  * @property string $ivc_value
@@ -52,9 +52,9 @@ class Invoices extends \yii\db\ActiveRecord
         return [
             [['ivc_number', 'ivc_cln_id', 'ivc_date_create', 'ivc_date_sale', 'ivc_name', 'ivc_count', 'ivc_unit', 'ivc_price',
               'ivc_value', 'ivc_date_payment', 'ivc_payment_method', 'ivc_ts_insert', 'ivc_ts_update', 'ivc_pfl_id'], 'required'],
-            [['ivc_cln_id', 'ivc_pfl_id', 'ivc_count', 'ivc_count_2', 'ivc_count_3'], 'integer'],
+            [['ivc_cln_id', 'ivc_pfl_id'], 'integer'],
             [['ivc_date_create', 'ivc_date_sale', 'ivc_date_payment', 'ivc_ts_insert', 'ivc_ts_update'], 'safe'],
-            [['ivc_price', 'ivc_price_2', 'ivc_price_3', 'ivc_value'], 'number'],
+            [['ivc_price', 'ivc_price_2', 'ivc_price_3', 'ivc_count', 'ivc_count_2', 'ivc_count_3', 'ivc_value'], 'number'],
             [['ivc_number', 'ivc_name', 'ivc_unit', 'ivc_name_2', 'ivc_unit_2', 'ivc_name_3', 'ivc_unit_3', 'ivc_payment_method'], 'string', 'max' => 128],
             [['ivc_number'], 'unique'],
             [['ivc_cln_id'], 'exist', 'skipOnError' => true, 'targetClass' => Clients::className(), 'targetAttribute' => ['ivc_cln_id' => 'cln_id']],
@@ -154,9 +154,9 @@ class Invoices extends \yii\db\ActiveRecord
             $this->ivc_date_payment = $this->ivc_date_create;
         }
 
-        $this->ivc_value = ($this->ivc_count * $this->ivc_price)
-                         + ($this->ivc_count_2 * $this->ivc_price_2)
-                         + ($this->ivc_count_3 * $this->ivc_price_3);
+        $this->ivc_value = round($this->ivc_count * $this->ivc_price, 2)
+                         + round($this->ivc_count_2 * $this->ivc_price_2, 2)
+                         + round($this->ivc_count_3 * $this->ivc_price_3, 2);
         if ($this->ivc_ts_insert == null) {
             $this->ivc_ts_insert = date('Y-m-d H:i:s');
         }
