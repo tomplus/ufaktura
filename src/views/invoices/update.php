@@ -5,10 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Invoices */
 
-$this->title = 'Update Invoices: ' . $model->ivc_number;
-$this->params['breadcrumbs'][] = ['label' => 'Invoices', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->ivc_id, 'url' => ['view', 'id' => $model->ivc_id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Edycja faktury: ' . $model->ivc_number;
 ?>
 <div class="invoices-update">
 

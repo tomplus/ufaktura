@@ -7,8 +7,6 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Invoices */
 
 $this->title = $model->ivc_number;
-$this->params['breadcrumbs'][] = ['label' => 'Invoices', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="invoices-view">
 
@@ -16,11 +14,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Drukuj', ['print', 'id' => $model->ivc_id], ['class' => 'btn btn-info']) ?> &nbsp;
-        <?= Html::a('Popraw', ['update', 'id' => $model->ivc_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Edycja', ['update', 'id' => $model->ivc_id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Usuń', ['delete', 'id' => $model->ivc_id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Czy chcesz usunąć fakturę ?',
                 'method' => 'post',
             ],
         ]) ?>

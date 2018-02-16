@@ -10,8 +10,7 @@ use app\models\InvoicesSearch;
 /* @var $searchModel app\models\InvoicesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Invoices';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Faktury';
 ?>
 <div class="invoices-index">
 
