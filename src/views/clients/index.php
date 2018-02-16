@@ -9,8 +9,7 @@ use app\models\ClientSearch;
 /* @var $searchModel app\models\ClientsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Clients';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Klienci';
 ?>
 <div class="clients-index">
 
