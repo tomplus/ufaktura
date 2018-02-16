@@ -18,7 +18,7 @@ $this->title = $model->ivc_number;
         <?= Html::a('Usuń', ['delete', 'id' => $model->ivc_id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Czy chcesz usunąć fakturę ?',
+                'confirm' => 'Czy chcesz usunąć fakturę?',
                 'method' => 'post',
             ],
         ]) ?>
