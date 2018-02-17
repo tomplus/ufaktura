@@ -22,6 +22,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'ivc_cln_id')->dropDownList($model->clientList) ?>
 
     <?= $form->field($model, 'ivc_date_create')->widget(\yii\jui\DatePicker::classname(), ['language'=>'pl', 'dateFormat' => 'yyyy-MM-dd']) ?>
+    <?php if ($model->isNewRecord == 0) { ?>
+    <p><strong>* Uwaga:</strong> modyfikując datę wystawienia pamiętaj o utrzymaniu kolejności numeracji !</p>
+    <?php } ?>
 
     </div>
 

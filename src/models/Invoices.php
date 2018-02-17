@@ -59,7 +59,31 @@ class Invoices extends \yii\db\ActiveRecord
             [['ivc_number'], 'unique'],
             [['ivc_cln_id'], 'exist', 'skipOnError' => true, 'targetClass' => Clients::className(), 'targetAttribute' => ['ivc_cln_id' => 'cln_id']],
             [['ivc_pfl_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::className(), 'targetAttribute' => ['ivc_pfl_id' => 'pfl_id']],
+            [['ivc_date_create'], 'validateDate']
         ];
+    }
+
+    public function validateDate($attribute, $params, $validator)
+    {
+        if ($this->isNewRecord == 0) {
+            # FIXME: enable validation for updated invoices
+            return;
+        }
+
+        # try to find invoices after this date (in the same month)
+        $date_from = date('Y-m-d', strtotime('+1 day', strtotime($this->$attribute)));
+        $date_to = date("Y-m-t", strtotime($this->$attribute));
+
+        if ($date_to == $this->$attribute) {
+            # last day in month always works
+            return;
+        }
+
+        $coll = Invoices::find()->where(['between', 'ivc_date_create', $date_from, $date_to])->orderBy('ivc_date_create DESC, ivc_id DESC')->limit(1)->one();
+        if ($coll !== null) {
+            $this->addError($attribute, "Kolizja z fakturą {$coll->ivc_number} - data wystawienia {$coll->ivc_date_create} w przedziale ($date_from $date_to)");
+        }
+
     }
 
     /**
@@ -129,22 +153,37 @@ class Invoices extends \yii\db\ActiveRecord
 
         $last = Invoices::find()->orderBy('ivc_date_create DESC, ivc_id DESC')->limit(1)->one();
         if ($last !== null) {
-            $number = (explode('/', $last->ivc_number)[0]) + 1;
             $this->ivc_date_create = $last->ivc_date_create;
         } else {
-            $number = 1;
             $this->ivc_date_create = date('Y-m-d');
         }
 
-        $this->ivc_number = $number;
+        $this->ivc_number = "(zostanie nadany w trakcie zapisu faktury)";
 
+    }
+
+    public function nextNumber($date) {
+        $date_1th = substr($this->ivc_date_create, 0, 8) . '01';
+        $last = Invoices::find()->where(['between', 'ivc_date_create', $date_1th, $date])->orderBy('ivc_date_create DESC, ivc_id DESC')->limit(1)->one();
+        $number = 0;
+        if ($last !== null) {
+            $number = explode('/', $last->ivc_number)[0];
+        }
+        return ($number + 1) . '/' . substr($date, 5, 2)  . '/' . substr($date, 0, 4);
     }
 
     public function save($runValidation = true, $attributes = null)
     {
-
-        $number = explode('/', $this->ivc_number)[0];
-        $this->ivc_number = $number . '/' . substr($this->ivc_date_create, 5, 2)  . '/' . substr($this->ivc_date_create, 0, 4);
+        if ($this->isNewRecord != 0) {
+            # new number
+            $this->ivc_number = $this->nextNumber($this->ivc_date_create);
+        } else {
+            # try to obtain new number if month is changed
+            $data_part = explode('/', $this->ivc_number, 2)[1];
+            if ($data_part !== substr($this->ivc_date_create, 5, 2)  . '/' . substr($this->ivc_date_create, 0, 4)) {
+                $this->ivc_number = $this->nextNumber($this->ivc_date_create);
+            }
+        }
 
         $this->ivc_date_sale = $this->ivc_date_create;
 
