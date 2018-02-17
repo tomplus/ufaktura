@@ -7,19 +7,17 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Profiles */
 
 $this->title = $model->pfl_id;
-$this->params['breadcrumbs'][] = ['label' => 'Profiles', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profiles-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->pfl_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->pfl_id], [
+        <?= Html::a('Edycja', ['update', 'id' => $model->pfl_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Usuń', ['delete', 'id' => $model->pfl_id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Czy chcesz usunąć profil?',
                 'method' => 'post',
             ],
         ]) ?>

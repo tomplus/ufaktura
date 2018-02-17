@@ -98,9 +98,9 @@ $pdf->Ln(30);
 
 $pdf->Cell(95,6,str_repeat('.', 50), 0, 0, 'C');   $pdf->Cell(95,6,str_repeat('.', 50), 0, 1, 'C');
 $pdf->SetFontSize(5);
-$pdf->Cell(95,6,"Podpis osoby upoważnionej do odbioru rachunku", 0, 0, 'C');    $pdf->Cell(95,6,"Podpis osoby upoważnionej do wystawienia rachunku", 0, 1, 'C');
+$pdf->Cell(95,6,"Podpis osoby upoważnionej do odbioru faktury", 0, 0, 'C');    $pdf->Cell(95,6,"Podpis osoby upoważnionej do wystawienia faktury", 0, 1, 'C');
 
-$outname = "rachunek-" . str_replace('/','_',$model->ivc_number) . "-ufaktura.pdf";
+$outname = "faktura-nr-" . str_replace('/','_',$model->ivc_number) . "-ufaktura.pdf";
 
 $pdf->Output($outname, 'D');
 

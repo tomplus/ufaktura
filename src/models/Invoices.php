@@ -69,7 +69,7 @@ class Invoices extends \yii\db\ActiveRecord
     {
         return [
             'ivc_id' => 'ID',
-            'ivc_number' => 'Numer rachunku',
+            'ivc_number' => 'Numer faktury',
             'ivc_pfl_id' => 'Sprzedawca (profil)',
             'ivc_cln_id' => 'Klient',
             'ivc_date_create' => 'Data wystawienia',
