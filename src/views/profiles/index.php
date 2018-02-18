@@ -25,7 +25,7 @@ $this->title = 'Profile';
             'pfl_id',
             'pfl_name_1',
             'pfl_name_2',
-            'pfl_name_2',
+            'pfl_name_3',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
