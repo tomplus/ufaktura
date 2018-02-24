@@ -39,5 +39,7 @@ $this->title = 'Faktury';
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+]); ?>
+
+<?= Html::a('Pobierz CSV', ['csv']) ?>
 </div>

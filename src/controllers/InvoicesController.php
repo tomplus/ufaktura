@@ -66,6 +66,25 @@ class InvoicesController extends Controller
         ]);
     }
 
+    public function actionCsv()
+    {
+        $searchModel = new InvoicesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->setPagination(False);
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
+        Yii::$app->response->setDownloadHeaders('faktury.csv');
+        $headers = Yii::$app->response->headers;
+        $headers->add('Content-Type', 'text/csv');
+        $headers->add('Pragma', 'no-cache');
+        $headers->add('Expires', '0');
+
+        return $this->renderPartial('csv', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
     /**
      * Creates a new Invoices model.
      * If creation is successful, the browser will be redirected to the 'view' page.
