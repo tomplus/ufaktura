@@ -37,7 +37,17 @@ $this->title = 'Faktury';
              'ivc_name',
              'ivc_value',
 
-            ['class' => 'yii\grid\ActionColumn'],
+             ['class' => 'yii\grid\ActionColumn',
+              'template' => '{view} {update} {print} {clone}',
+              'buttons' => ['print' => function ($url, $model, $key) {
+                                          return Html::a('<span class="glyphicon glyphicon-print">', $url,
+                                            ["title"=>"Drukuj", "aria-label"=>"Drukuj"]);
+                                       },
+                            'clone' => function ($url, $model, $key) {
+                                          return Html::a('<span class="glyphicon glyphicon-export">', ['create', 'from_id' => $model->ivc_id],
+                                            ["title"=>"Klonuj", "aria-label"=>"Klonuj"]);
+                            }]
+             ],
         ],
 ]); ?>
 
