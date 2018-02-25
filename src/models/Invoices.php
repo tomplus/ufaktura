@@ -145,7 +145,7 @@ class Invoices extends \yii\db\ActiveRecord
         return Profiles::getNamesAsArray();
     }
 
-    public function initValues()
+    public function initValues($from_id)
     {
         if ($this->ivc_number !== null) {
             return;
@@ -159,6 +159,21 @@ class Invoices extends \yii\db\ActiveRecord
         }
 
         $this->ivc_number = "(zostanie nadany w trakcie zapisu faktury)";
+
+        if ($from_id !== null) {
+            $from = Invoices::findOne($from_id);
+            if ($from != null) {
+                $from_attr = $from->getAttributes();
+                unset($from_attr['ivc_date_create']);
+                unset($from_attr['ivc_date_sale']);
+                unset($from_attr['ivc_date_payment']);
+                unset($from_attr['ivc_id']);
+                unset($from_attr['ivc_number']);
+                unset($from_attr['ivc_ts_insert']);
+                unset($from_attr['ivc_ts_update']);
+                $this->setAttributes($from_attr);
+            }
+        }
 
     }
 
