@@ -65,18 +65,35 @@ $i = 0;
 foreach (array('', '_2', '_3') as $suffix) {
 
     if ($model->{'ivc_count' . $suffix} > 0) {
+        $name_lines = explode("|", wordwrap($model->{'ivc_name' . $suffix}, 50, "|", true));
+
+        $border = 'LR';
+        if (count($name_lines) == 1) {
+            $border .= 'B';
+        }
 
         $i += 1;
-        $pdf->Cell(10,6,$i, 1, 0, 'R');
-        $pdf->Cell(110,6,$model->{'ivc_name' . $suffix}, 1, 0);
-        $pdf->Cell(20,6,$model->{'ivc_count' . $suffix}, 1, 0, 'R');
-        $pdf->Cell(10,6,$model->{'ivc_unit' . $suffix}, 1, 0, 'R');
-        $pdf->Cell(20,6,number_format($model->{'ivc_price' . $suffix},2), 1, 0, 'R');
+        $pdf->Cell(10,6,$i, $border, 0, 'R');
+        $pdf->Cell(110,6,$name_lines[0], $border, 0);
+        $pdf->Cell(20,6,$model->{'ivc_count' . $suffix}, $border, 0, 'R');
+        $pdf->Cell(10,6,$model->{'ivc_unit' . $suffix}, $border, 0, 'R');
+        $pdf->Cell(20,6,number_format($model->{'ivc_price' . $suffix},2), $border, 0, 'R');
         $value = round($model->{'ivc_count' . $suffix} * $model->{'ivc_price' . $suffix}, 2);
-        $pdf->Cell(20,6, number_format($value,2) , 1, 1, 'R');
+        $pdf->Cell(20,6, number_format($value,2) , $border, 1, 'R');
 
+        for ($l = 1; $l < count($name_lines); $l++) {
+            $border = 'LR';
+            if ($l == count($name_lines)-1) {
+                $border .= 'B';
+            }
+            $pdf->Cell(10,6,'', $border, 0, 'R');
+            $pdf->Cell(110,6,$name_lines[$l], $border, 0);
+            $pdf->Cell(20,6,'', $border, 0, 'R');
+            $pdf->Cell(10,6,'', $border, 0, 'R');
+            $pdf->Cell(20,6,'', $border, 0, 'R');
+            $pdf->Cell(20,6,'', $border, 1, 'R');
+        }
     }
-
 }
 
 $pdf->Cell(170,6,"Do zapłaty:", 0, 0, 'R');
