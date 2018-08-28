@@ -41,17 +41,31 @@ $pdf->Cell(95,6,"Sprzedawca", 0, 0);   $pdf->Cell(105,6,"Nabywca", 0, 1);
 
 $pdf->SetFont('DejaVu','',10);
 
-$cln_nip = $model->ivcCln->cln_name_4;
-if (strlen($cln_nip) > 0) {
-    $cln_nip = 'NIP: ' . $cln_nip;
+$cln_name = array($model->ivcCln->cln_name_1,
+                  $model->ivcCln->cln_name_2,
+                  $model->ivcCln->cln_name_3);
+
+if (strlen($model->ivcCln->cln_name_5) > 0) {
+    array_push($cln_name, $model->ivcCln->cln_name_5);
 }
 
-$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_1, 0, 0);   $pdf->Cell(105,5,$model->ivcCln->cln_name_1, 0, 1);
-$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_2, 0, 0);   $pdf->Cell(105,5,$model->ivcCln->cln_name_2, 0, 1);
-$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_3, 0, 0);   $pdf->Cell(105,5,$model->ivcCln->cln_name_3, 0, 1);
-$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_4, 0, 0);   $pdf->Cell(105,5,$cln_nip, 0, 1);
-$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_5, 0, 0);   $pdf->Cell(105,5,$model->ivcCln->cln_name_5, 0, 1);
-$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_6, 0, 0);   $pdf->Cell(105,5,$model->ivcCln->cln_name_6, 0, 1);
+if (strlen($model->ivcCln->cln_name_6) > 0) {
+    array_push($cln_name, $model->ivcCln->cln_name_6);
+}
+
+if (strlen($model->ivcCln->cln_name_4) > 0) {
+    array_push($cln_name, 'NIP: ' . $model->ivcCln->cln_name_4);
+}
+
+$cln_name = array_merge($cln_name, array_fill(0, 6 - count($cln_name), ""));
+
+
+$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_1, 0, 0);   $pdf->Cell(105,5,$cln_name[0], 0, 1);
+$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_2, 0, 0);   $pdf->Cell(105,5,$cln_name[1], 0, 1);
+$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_3, 0, 0);   $pdf->Cell(105,5,$cln_name[2], 0, 1);
+$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_4, 0, 0);   $pdf->Cell(105,5,$cln_name[3], 0, 1);
+$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_5, 0, 0);   $pdf->Cell(105,5,$cln_name[4], 0, 1);
+$pdf->Cell(95, 5, $model->ivcPfl->pfl_name_6, 0, 0);   $pdf->Cell(105,5,$cln_name[5], 0, 1);
 
 $pdf->Ln(15);
 $pdf->Cell(10,6,"Lp.", 1, 0);
