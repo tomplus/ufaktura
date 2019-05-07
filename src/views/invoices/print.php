@@ -110,7 +110,7 @@ foreach (array('', '_2', '_3') as $suffix) {
     }
 }
 
-$pdf->Cell(170,6,"Do zapłaty:", 0, 0, 'R');
+$pdf->Cell(170,6,"RAZEM:", 0, 0, 'R');
 $pdf->Cell(20,6,number_format($model->ivc_value,2), 1, 1, 'R');
 
 $pdf->Ln(10);
@@ -122,8 +122,9 @@ $pdf->Cell(190,6,"Słownie do zapłaty: " . $slownie, 0, 1, 'R');
 $pdf->Ln(10);
 
 $pdf->Cell(30,6,"Forma płatności:", 0, 0);     $pdf->Cell(105,6,$model->ivc_payment_method, 0, 1);
-$pdf->Cell(30,6,"Termin płatności:", 0, 0);     $pdf->Cell(105,6,$model->ivc_date_payment, 0, 1);
-
+if (strpos($model->ivc_payment_method, "zapłacono") === false) {
+    $pdf->Cell(30,6,"Termin płatności:", 0, 0);     $pdf->Cell(105,6,$model->ivc_date_payment, 0, 1);
+}
 
 $pdf->Ln(30);
 

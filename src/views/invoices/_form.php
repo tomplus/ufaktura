@@ -51,7 +51,11 @@ use yii\widgets\ActiveForm;
 
     <div style="border: thin black solid; padding: 10px 10px 10px 10px;">
 
-    <?= $form->field($model, 'ivc_payment_method')->dropDownList(["gotówka" => "gotówka", "przelew" => "przelew"]) ?>
+    <?= $form->field($model, 'ivc_payment_method')->dropDownList([
+            "gotówka" => "gotówka",
+            "przelew" => "przelew",
+            "gotówka, zapłacono" => "gotówka, zapłacono",
+            "przelew, zapłacono" => "przelew, zapłacono"]) ?>
 
     </div>
 
