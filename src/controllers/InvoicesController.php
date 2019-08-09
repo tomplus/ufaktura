@@ -56,13 +56,14 @@ class InvoicesController extends Controller
         ]);
     }
 
-    public function actionPrint($id)
+    public function actionPrint($id, $dup=null)
     {
         Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
         $headers = Yii::$app->response->headers;
         $headers->add('Content-Type', 'application/pdf');
         return $this->renderPartial('print', [
-            'model' => $this->findModel($id),
+                'model' => $this->findModel($id),
+                'dup' => $dup
         ]);
     }
 

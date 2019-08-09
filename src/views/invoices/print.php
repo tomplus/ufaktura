@@ -26,7 +26,11 @@ $pdf->Ln(10);
 $pdf->SetFontSize(20);
 $pdf->cell(0,10,"Faktura nr: " . $model->ivc_number , 0, 1, 'C');
 $pdf->SetFontSize(8);
-$pdf->cell(0,6,"(oryginał / kopia)", 0, 1, 'C');
+if ($dup === null) {
+    $pdf->cell(0,6,"(oryginał / kopia)", 0, 1, 'C');
+} else {
+    $pdf->cell(0,6,"Duplikat z dnia $dup", 0, 1, 'C');
+}
 
 $pdf->Ln(10);
 $pdf->SetFontSize(10);
@@ -132,7 +136,8 @@ $pdf->Cell(95,6,str_repeat('.', 50), 0, 0, 'C');   $pdf->Cell(95,6,str_repeat('.
 $pdf->SetFontSize(5);
 $pdf->Cell(95,6,"Podpis osoby upoważnionej do odbioru faktury", 0, 0, 'C');    $pdf->Cell(95,6,"Podpis osoby upoważnionej do wystawienia faktury", 0, 1, 'C');
 
-$outname = "faktura-nr-" . str_replace('/','_',$model->ivc_number) . "-ufaktura.pdf";
+$dup_info = $dup !== null ? '-duplikat' : '';
+$outname = "faktura-nr-" . str_replace('/','_',$model->ivc_number) . "-ufaktura". $dup_info  .".pdf";
 
 $pdf->Output($outname, 'D');
 

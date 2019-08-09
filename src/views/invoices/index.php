@@ -38,11 +38,16 @@ $this->title = 'Faktury';
              'ivc_value',
 
              ['class' => 'yii\grid\ActionColumn',
-              'template' => '{view} {update} {print} {clone}',
+              'template' => '{view} {update} {print} {printdup} {clone}',
               'buttons' => ['print' => function ($url, $model, $key) {
                                           return Html::a('<span class="glyphicon glyphicon-print">', $url,
                                             ["title"=>"Drukuj", "aria-label"=>"Drukuj"]);
+                              },
+                            'printdup' => function ($url, $model, $key) {
+                                          return Html::a('<span class="glyphicon glyphicon-calendar">', ['print', 'id' => $model->ivc_id, 'dup' => date('Y-m-d')],
+                                            ["title"=>"Drukuj duplikat", "aria-label"=>"Drukuj duplikat"]);
                                        },
+
                             'clone' => function ($url, $model, $key) {
                                           return Html::a('<span class="glyphicon glyphicon-export">', ['create', 'from_id' => $model->ivc_id],
                                             ["title"=>"Klonuj", "aria-label"=>"Klonuj"]);
