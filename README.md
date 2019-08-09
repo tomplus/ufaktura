@@ -112,17 +112,19 @@ docker pull tpimages/ufaktura:latest
 
 Zamiast `latest` możesz podać dowolną inną wydaną wersje.
 
-2. Utwórz katalog w którym zapisywane będą dane (baza sqlite) i skopiuj tam pustą bazę z kontenera.
+2. Utwórz katalog w którym zapisywane będą dane (baza sqlite) i skopiuj tam pustą bazę z kontenera. Operację wykonujemy tylko raz
+   aby utworzyć pustą bazę.
 
 ```
 mkdir /home/tomplus/ufaktura
+chown 65534:65534 /home/tomplus/ufaktura
 docker run --volume=/home/tomplus/ufaktura:/tmp -it --rm --name ufaktura tpimages/ufaktura:latest cp /ufaktura/db/ufaktura.db /tmp/
 ```
 
 3. Uruchom obraz wskazując katalog z baza danych
 
 ```
-docker run -p 8080:8080 --volume=/home/tomplus/ufaktura:/ufaktura/db -it --rm --name tpimages/ufaktura ufaktura:latest
+docker run -p 8080:8080 --volume=/home/tomplus/ufaktura:/ufaktura/db -it --rm --name ufaktura tpimages/ufaktura:latest
 ```
 
 Serwis jest dostepny z przeglądarki pod adresem http://localhost:8080
