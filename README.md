@@ -1,3 +1,5 @@
+![Docker status](https://img.shields.io/docker/build/tpimages/ufaktura) ![GitHub release](https://img.shields.io/github/release/tomplus/ufaktura)
+
 # uFaktura (micro-faktura)
 
 micro-Faktura to prosty serwis do wystawiania faktur, działający w przeglądarce.
