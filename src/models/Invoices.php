@@ -208,11 +208,10 @@ class Invoices extends \yii\db\ActiveRecord
             $this->ivc_date_payment = $this->ivc_date_create;
         }
 
-        print($this->ivc_count_2);
-
-        $this->ivc_value = round($this->ivc_count * $this->ivc_price, 2);
+        $this->ivc_value = round($this->ivc_count * $this->ivc_price, 2)
                          + round((float)$this->ivc_count_2 * (float)$this->ivc_price_2, 2)
                          + round((float)$this->ivc_count_3 * (float)$this->ivc_price_3, 2);
+
         if ($this->ivc_ts_insert == null) {
             $this->ivc_ts_insert = date('Y-m-d H:i:s');
         }
