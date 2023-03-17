@@ -33,6 +33,7 @@ $this->title = $model->pfl_id;
             'pfl_name_4',
             'pfl_name_5',
             'pfl_name_6',
+            'pfl_invoice_note',
     ],
     ]) ?>
 

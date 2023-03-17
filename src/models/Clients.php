@@ -63,7 +63,7 @@ class Clients extends \yii\db\ActiveRecord
         return $this->hasMany(Invoices::className(), ['ivc_cln_id' => 'cln_id']);
     }
 
-    public function getNamesAsArray()
+    public static function getNamesAsArray()
     {
         $models = Clients::find()->select(['cln_id', "cln_name_1"])->orderBy('cln_name_1')->asArray()->all();
         return ArrayHelper::map($models, 'cln_id', 'cln_name_1');

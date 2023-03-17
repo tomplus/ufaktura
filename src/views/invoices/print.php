@@ -130,7 +130,14 @@ if (strpos($model->ivc_payment_method, "zapłacono") === false) {
     $pdf->Cell(30,6,"Termin płatności:", 0, 0);     $pdf->Cell(105,6,$model->ivc_date_payment, 0, 1);
 }
 
-$pdf->Ln(30);
+if (strlen($model->ivcPfl->pfl_invoice_note) > 0) {
+  $pdf->Ln(10);
+  $pdf->SetFontSize(6);
+  $pdf->Cell(30,6, $model->ivcPfl->pfl_invoice_note, 0, 0);
+  $pdf->Ln(20);
+} else {
+  $pdf->Ln(30);
+}
 
 $pdf->Cell(95,6,str_repeat('.', 50), 0, 0, 'C');   $pdf->Cell(95,6,str_repeat('.', 50), 0, 1, 'C');
 $pdf->SetFontSize(5);
