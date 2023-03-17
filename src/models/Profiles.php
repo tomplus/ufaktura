@@ -15,6 +15,7 @@ use Yii;
  * @property string $pfl_name_4
  * @property string $pfl_name_5
  * @property string $pfl_name_6
+ * @property string $pfl_invoice_note
  *
  * @property Invoices[] $invoices
  */
@@ -35,7 +36,7 @@ class Profiles extends \yii\db\ActiveRecord
     {
         return [
             [['pfl_name_1'], 'required'],
-            [['pfl_name_1', 'pfl_name_2', 'pfl_name_3', 'pfl_name_4', 'pfl_name_5', 'pfl_name_6'], 'string', 'max' => 128],
+            [['pfl_name_1', 'pfl_name_2', 'pfl_name_3', 'pfl_name_4', 'pfl_name_5', 'pfl_name_6', 'pfl_invoice_note'], 'string', 'max' => 128],
         ];
     }
 
@@ -52,6 +53,7 @@ class Profiles extends \yii\db\ActiveRecord
             'pfl_name_4' => 'Sprzedawca - linia 4',
             'pfl_name_5' => 'Sprzedawca - linia 5',
             'pfl_name_6' => 'Sprzedawca - linia 6',
+            'pfl_invoice_note' => 'Dodatkowa uwaga na fakturach',
        ];
     }
 
@@ -63,7 +65,7 @@ class Profiles extends \yii\db\ActiveRecord
         return $this->hasMany(Invoices::className(), ['ivc_pfl_id' => 'pfl_id']);
     }
 
-    public function getNamesAsArray()
+    public static function getNamesAsArray()
     {
         $models = Profiles::find()->select(['pfl_id', "pfl_name_1"])->orderBy('pfl_name_1')->asArray()->all();
         return ArrayHelper::map($models, 'pfl_id', 'pfl_name_1');
