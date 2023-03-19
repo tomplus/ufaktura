@@ -1,4 +1,4 @@
-![Docker status](https://img.shields.io/docker/build/tpimages/ufaktura) ![GitHub release](https://img.shields.io/github/release/tomplus/ufaktura)
+![GitHub release](https://img.shields.io/github/release/tomplus/ufaktura)
 
 # uFaktura (micro-faktura)
 
