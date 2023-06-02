@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'testuFaktura01'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EE5819A2CDA447A78CD00B7DBE8806F8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4018C4CC841740B78BA547C775AC90AF }}
           package: .
