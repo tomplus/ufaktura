@@ -28,6 +28,7 @@ use Yii;
  * @property string $ivc_value
  * @property string $ivc_date_payment
  * @property string $ivc_payment_method
+ * @property boolean $ivc_proforma
  * @property string $ivc_ts_insert
  * @property string $ivc_ts_update
  *
@@ -36,6 +37,8 @@ use Yii;
  */
 class Invoices extends \yii\db\ActiveRecord
 {
+    public $number_proforma;
+
     /**
      * @inheritdoc
      */
@@ -55,11 +58,14 @@ class Invoices extends \yii\db\ActiveRecord
             [['ivc_cln_id', 'ivc_pfl_id'], 'integer'],
             [['ivc_date_create', 'ivc_date_sale', 'ivc_date_payment', 'ivc_ts_insert', 'ivc_ts_update'], 'safe'],
             [['ivc_price', 'ivc_price_2', 'ivc_price_3', 'ivc_count', 'ivc_count_2', 'ivc_count_3', 'ivc_value'], 'number'],
-            [['ivc_number', 'ivc_name', 'ivc_unit', 'ivc_name_2', 'ivc_unit_2', 'ivc_name_3', 'ivc_unit_3', 'ivc_payment_method'], 'string', 'max' => 128],
+            [['ivc_name', 'ivc_name_2', 'ivc_name_3'], 'string', 'max' => 512],
+            [['ivc_number', 'ivc_unit', 'ivc_unit_2', 'ivc_unit_3', 'ivc_payment_method'], 'string', 'max' => 128],
             [['ivc_number'], 'unique'],
             [['ivc_cln_id'], 'exist', 'skipOnError' => true, 'targetClass' => Clients::className(), 'targetAttribute' => ['ivc_cln_id' => 'cln_id']],
             [['ivc_pfl_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::className(), 'targetAttribute' => ['ivc_pfl_id' => 'pfl_id']],
-            [['ivc_date_create'], 'validateDate']
+            [['ivc_date_create'], 'validateDate'],
+            [['ivc_proforma'], 'boolean'],
+            [['number_proforma'], 'string', 'max' => 128]
         ];
     }
 
@@ -113,6 +119,8 @@ class Invoices extends \yii\db\ActiveRecord
             'ivc_value' => 'Wartość',
             'ivc_date_payment' => 'Termin płatności',
             'ivc_payment_method' => 'Sposób płatności',
+            'ivc_proforma' => 'Faktura Proforma',
+            'number_proforma' => 'Numer Faktury Proforma',
             'ivc_ts_insert' => 'Data dodania',
             'ivc_ts_update' => 'Data zmiany',
         ];
@@ -179,7 +187,7 @@ class Invoices extends \yii\db\ActiveRecord
 
     public function nextNumber($date) {
         $date_1th = substr($this->ivc_date_create, 0, 8) . '01';
-        $last = Invoices::find()->where(['between', 'ivc_date_create', $date_1th, $date])->orderBy('ivc_date_create DESC, ivc_id DESC')->limit(1)->one();
+        $last = Invoices::find()->where(['between', 'ivc_date_create', $date_1th, $date])->andWhere(['ivc_proforma' => 0])->orderBy('ivc_date_create DESC, ivc_id DESC')->limit(1)->one();
         $number = 0;
         if ($last !== null) {
             $number = explode('/', $last->ivc_number)[0];
@@ -189,14 +197,24 @@ class Invoices extends \yii\db\ActiveRecord
 
     public function save($runValidation = true, $attributes = null)
     {
-        if ($this->isNewRecord != 0) {
-            # new number
-            $this->ivc_number = $this->nextNumber($this->ivc_date_create);
+        if (!empty(trim($this->number_proforma)) || $this->ivc_proforma ) {
+
+            if (!empty(trim($this->number_proforma))) {
+                $this->ivc_number = $this->number_proforma;
+            }
+            $this->ivc_proforma = 1;
+
         } else {
-            # try to obtain new number if month is changed
-            $data_part = explode('/', $this->ivc_number, 2)[1];
-            if ($data_part !== substr($this->ivc_date_create, 5, 2)  . '/' . substr($this->ivc_date_create, 0, 4)) {
+
+            if ($this->isNewRecord != 0) {
+                # new number
                 $this->ivc_number = $this->nextNumber($this->ivc_date_create);
+            } else {
+                # try to obtain new number if month is changed
+                $data_part = explode('/', $this->ivc_number, 2)[1];
+                if ($data_part !== substr($this->ivc_date_create, 5, 2)  . '/' . substr($this->ivc_date_create, 0, 4)) {
+                    $this->ivc_number = $this->nextNumber($this->ivc_date_create);
+                }
             }
         }
 

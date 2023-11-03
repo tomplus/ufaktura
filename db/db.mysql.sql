@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS profiles (
   pfl_name_4 VARCHAR(128),
   pfl_name_5 VARCHAR(128),
   pfl_name_6 VARCHAR(128),
+  pfl_invoice_note VARCHAR(128),
   PRIMARY KEY (pfl_id)
 ) ENGINE = InnoDB;
 
@@ -31,21 +32,22 @@ CREATE TABLE IF NOT EXISTS invoices (
   ivc_cln_id INTEGER NOT NULL REFERENCES clients(cln_id),
   ivc_date_create DATE NOT NULL,
   ivc_date_sale DATE NOT NULL,
-  ivc_name VARCHAR(128) NOT NULL,
+  ivc_name VARCHAR(512) NOT NULL,
   ivc_count DECIMAL(10,2) NOT NULL,
   ivc_unit VARCHAR(128) NOT NULL,
   ivc_price DECIMAL(10,2) NOT NULL,
-  ivc_name_2 VARCHAR(128),
+  ivc_name_2 VARCHAR(512),
   ivc_count_2 DECIMAL(10,2),
   ivc_unit_2 VARCHAR(128),
   ivc_price_2 DECIMAL(10,2),
-  ivc_name_3 VARCHAR(128),
+  ivc_name_3 VARCHAR(512),
   ivc_count_3 DECIMAL(10,2),
   ivc_unit_3 VARCHAR(128),
   ivc_price_3 DECIMAL(10,2),
   ivc_value DECIMAL(10,2) NOT NULL,
   ivc_date_payment DATE NOT NULL,
   ivc_payment_method VARCHAR(256) NOT NULL,
+  ivc_proforma INTEGER NOT NULL DEFAULT 0,
   ivc_ts_insert DATETIME NOT NULL,
   ivc_ts_update DATETIME NOT NULL,
   PRIMARY KEY (ivc_id)
