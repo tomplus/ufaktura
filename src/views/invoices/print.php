@@ -24,7 +24,13 @@ $pdf->Cell(4,6, $model->ivcPfl->pfl_name_6, 0, 1);
 
 $pdf->Ln(10);
 $pdf->SetFontSize(20);
-$pdf->cell(0,10,"Faktura nr: " . $model->ivc_number , 0, 1, 'C');
+
+if ($model->ivc_proforma) {
+    $pdf->cell(0,10,"Faktura Proforma nr: " . $model->ivc_number , 0, 1, 'C');
+} else {
+    $pdf->cell(0,10,"Faktura nr: " . $model->ivc_number , 0, 1, 'C');
+}
+
 $pdf->SetFontSize(8);
 if ($dup === null) {
     $pdf->cell(0,6,"(oryginał / kopia)", 0, 1, 'C');

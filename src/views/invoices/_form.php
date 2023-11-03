@@ -21,7 +21,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ivc_cln_id')->dropDownList($model->clientList) ?>
 
-    <?= $form->field($model, 'ivc_date_create')->widget(\yii\jui\DatePicker::classname(), ['language'=>'pl', 'dateFormat' => 'yyyy-MM-dd']) ?>
+    <?= $form->field($model, 'ivc_date_create', [ 'options' => ['style' => 'display: inline-block; width: 40%;']])->widget(\yii\jui\DatePicker::classname(), ['language'=>'pl', 'dateFormat' => 'yyyy-MM-dd']) ?>
+
+    <strong>Numer faktury proforma</strong>
+    <?= $form->field($model, 'number_proforma', [ 'options' => ['style' => 'display: inline-block; width: 30%;']])->textInput(['maxlength' => true])->label("") ?>
+
+
     <?php if ($model->isNewRecord == 0) { ?>
     <p><strong>* Uwaga:</strong> modyfikując datę wystawienia pamiętaj o utrzymaniu kolejności numeracji !</p>
     <?php } ?>
