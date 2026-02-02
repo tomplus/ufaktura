@@ -220,7 +220,8 @@ class Invoices extends \yii\db\ActiveRecord
                 $this->ivc_number = $this->nextNumber($this->ivc_date_create);
             } else {
                 # try to obtain new number if month is changed
-                $data_part = explode('/', $this->ivc_number, 2)[1];
+                $parts = explode('/', $this->ivc_number);
+                $data_part = $parts[count($parts)-2] . '/' . $parts[count($parts)-1];
                 if ($data_part !== substr($this->ivc_date_create, 5, 2)  . '/' . substr($this->ivc_date_create, 0, 4)) {
                     $this->ivc_number = $this->nextNumber($this->ivc_date_create);
                 }
