@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS profiles (
   pfl_name_5 VARCHAR(128),
   pfl_name_6 VARCHAR(128),
   pfl_invoice_note VARCHAR(128),
-  pfl_invoice_prefix VARCHAR(128)
+  pfl_invoice_prefix VARCHAR(128),
   PRIMARY KEY (pfl_id)
 ) ENGINE = InnoDB;
 
