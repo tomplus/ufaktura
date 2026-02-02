@@ -55,7 +55,7 @@ class Profiles extends \yii\db\ActiveRecord
             'pfl_name_5' => 'Sprzedawca - linia 5',
             'pfl_name_6' => 'Sprzedawca - linia 6',
             'pfl_invoice_note' => 'Dodatkowa uwaga na fakturach',
-            'pfl_invoice_prefix' => 'Prefix na fakturach (opcjonalnie, PREFIX/NUMER/MIESIĄC/DZIEŃ)',
+            'pfl_invoice_prefix' => 'Prefix na fakturach (opcjonalnie, PREFIX/NUMER/MIESIĄC/ROK)',
        ];
     }
 
