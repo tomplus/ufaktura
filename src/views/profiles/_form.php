@@ -26,6 +26,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'pfl_invoice_note')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'pfl_invoice_prefix')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Zapisz', ['class' => 'btn btn-success']) ?>
     </div>

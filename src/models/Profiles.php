@@ -36,7 +36,7 @@ class Profiles extends \yii\db\ActiveRecord
     {
         return [
             [['pfl_name_1'], 'required'],
-            [['pfl_name_1', 'pfl_name_2', 'pfl_name_3', 'pfl_name_4', 'pfl_name_5', 'pfl_name_6', 'pfl_invoice_note'], 'string', 'max' => 128],
+            [['pfl_name_1', 'pfl_name_2', 'pfl_name_3', 'pfl_name_4', 'pfl_name_5', 'pfl_name_6', 'pfl_invoice_note', 'pfl_invoice_prefix'], 'string', 'max' => 128],
         ];
     }
 
@@ -54,6 +54,7 @@ class Profiles extends \yii\db\ActiveRecord
             'pfl_name_5' => 'Sprzedawca - linia 5',
             'pfl_name_6' => 'Sprzedawca - linia 6',
             'pfl_invoice_note' => 'Dodatkowa uwaga na fakturach',
+            'pfl_invoice_prefix' => 'Prefix na fakturach (opcjonalnie, PREFIX/NUMER/MIESIĄC/DZIEŃ)',
        ];
     }
 
