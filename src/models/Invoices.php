@@ -189,10 +189,19 @@ class Invoices extends \yii\db\ActiveRecord
         $date_1th = substr($this->ivc_date_create, 0, 8) . '01';
         $last = Invoices::find()->where(['between', 'ivc_date_create', $date_1th, $date])->andWhere(['ivc_proforma' => 0])->orderBy('ivc_date_create DESC, ivc_id DESC')->limit(1)->one();
         $number = 0;
+
         if ($last !== null) {
-            $number = explode('/', $last->ivc_number)[0];
+            $parts = explode('/', $last->ivc_number);
+            $number = $parts[count($parts) - 3];
         }
-        return ($number + 1) . '/' . substr($date, 5, 2)  . '/' . substr($date, 0, 4);
+        
+        $full_number = ($number + 1) . '/' . substr($date, 5, 2)  . '/' . substr($date, 0, 4);
+        $prefix = $this->ivcPfl->pfl_invoice_prefix;        
+        if ($prefix !== null and $prefix != '') {
+            $full_number = $prefix . '/' . $full_number;
+        }
+
+        return $full_number;
     }
 
     public function save($runValidation = true, $attributes = null)
@@ -211,7 +220,8 @@ class Invoices extends \yii\db\ActiveRecord
                 $this->ivc_number = $this->nextNumber($this->ivc_date_create);
             } else {
                 # try to obtain new number if month is changed
-                $data_part = explode('/', $this->ivc_number, 2)[1];
+                $parts = explode('/', $this->ivc_number);
+                $data_part = $parts[count($parts)-2] . '/' . $parts[count($parts)-1];
                 if ($data_part !== substr($this->ivc_date_create, 5, 2)  . '/' . substr($this->ivc_date_create, 0, 4)) {
                     $this->ivc_number = $this->nextNumber($this->ivc_date_create);
                 }
