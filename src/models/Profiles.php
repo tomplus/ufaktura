@@ -16,6 +16,7 @@ use Yii;
  * @property string $pfl_name_5
  * @property string $pfl_name_6
  * @property string $pfl_invoice_note
+ * @property string $pfl_invoice_prefix
  *
  * @property Invoices[] $invoices
  */
